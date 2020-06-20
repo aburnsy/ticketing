@@ -6,11 +6,10 @@ export class NotFoundError extends CustomError {
   constructor() {
     super('Route not found');
 
-    // Only because we are extending a built in class
     Object.setPrototypeOf(this, NotFoundError.prototype);
   }
 
   serializeErrors() {
-    return [{ message: 'URL Not Found' }];
+    return [{ message: 'Not Found' }];
   }
 }
