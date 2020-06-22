@@ -24,20 +24,24 @@ interface UserDoc extends mongoose.Document {
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
-    required: true
+    required: true,
   },
   password: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
-userSchema.pre('save', async function(done) {
+//Middleware implemented in Mongoose
+//With middleware functions, 'this' refers to the User object being stored
+//If we were to use an arrow function, 'this' would be overridden and would thed refer to the context of the entire file
+userSchema.pre('save', async function (done) {
   if (this.isModified('password')) {
+    //will return true if created for first time
     const hashed = await Password.toHash(this.get('password'));
     this.set('password', hashed);
   }
-  done();
+  done(); //Callback to Mongoose
 });
 
 userSchema.statics.build = (attrs: UserAttrs) => {
