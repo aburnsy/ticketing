@@ -40,7 +40,7 @@ router.post(
         id: user.id,
         email: user.email,
       },
-      'asdf' //Secret Key
+      process.env.JWT_KEY! //Secret Key - the exclamation tells TS to ignore that the variable may not have been defined yet
     );
     //Store it in session object
     req.session = {
