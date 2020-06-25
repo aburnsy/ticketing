@@ -5,7 +5,8 @@ export default ({ req }) => {
     // We are on the server
 
     return axios.create({
-      baseURL: 'http://ingress-nginx.ingress-nginx.svc.cluster.local',
+      baseURL:
+        'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local', //This is the service name . namespace
       headers: req.headers,
     });
   } else {
