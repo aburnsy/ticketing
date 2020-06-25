@@ -17,7 +17,7 @@ app.use(json());
 app.use(
   cookieSession({
     signed: false, //This means the cookie is not encrytped
-    secure: true, //https only
+    secure: process.env.NODE_ENV !== 'test', //https only
   })
 );
 
@@ -32,4 +32,4 @@ app.all('*', async (req, res) => {
 
 app.use(errorHandler);
 
-export {app};
+export { app };
