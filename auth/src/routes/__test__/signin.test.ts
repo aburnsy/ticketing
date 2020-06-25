@@ -48,3 +48,21 @@ it('responds with a cookie when given valid credentials', async () => {
 
   expect(response.get('Set-Cookie')).toBeDefined();
 });
+
+it('fails when an incorrect password is supplied', async () => {
+  await request(app)
+    .post('/api/users/signup')
+    .send({
+      email: 'andyBurns@hcl.com',
+      password: 'abababa',
+    })
+    .expect(201);
+
+  await request(app)
+    .post('/api/users/signin')
+    .send({
+      email: 'andyBurns@hcl.com',
+      password: 'aa123423',
+    })
+    .expect(400);
+});

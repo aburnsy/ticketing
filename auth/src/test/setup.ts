@@ -6,7 +6,7 @@ import { app } from '../app';
 declare global {
   namespace NodeJS {
     interface Global {
-      signin(): Promise<string[]>;
+      signin(): Promise<string[]>; //Tells TS there is a global signin property
     }
   }
 }
