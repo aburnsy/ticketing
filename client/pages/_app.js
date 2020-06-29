@@ -1,7 +1,9 @@
+//Very important to get name of this file correct
 import 'bootstrap/dist/css/bootstrap.css';
 import buildClient from '../api/build-client';
 import Header from '../components/header';
 
+//This is a wrapper around the page we are navigating to
 const AppComponent = ({ Component, pageProps, currentUser }) => {
   return (
     <div>
@@ -11,7 +13,7 @@ const AppComponent = ({ Component, pageProps, currentUser }) => {
   );
 };
 
-AppComponent.getInitialProps = async appContext => {
+AppComponent.getInitialProps = async (appContext) => {
   const client = buildClient(appContext.ctx);
   const { data } = await client.get('/api/users/currentuser');
 
@@ -22,7 +24,7 @@ AppComponent.getInitialProps = async appContext => {
 
   return {
     pageProps,
-    ...data
+    ...data,
   };
 };
 
