@@ -7,12 +7,14 @@ export default ({ req }) => {
     return axios.create({
       baseURL:
         'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local', //This is the service name . namespace
-      headers: req.headers,
+      //cross namepsace communication pattern -> kubectl get services -n ingress-nginx
+      //http://<SERVICE NAME>.<NAMESPACE>.svc.cluster.local
+      headers: req.headers, //Add the headers to the api call
     });
   } else {
     // We must be on the browser
     return axios.create({
-      baseUrl: '/',
+      baseUrl: '/', //The browser will take care of headers for us
     });
   }
 };
