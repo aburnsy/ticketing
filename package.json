@@ -1,0 +1,20 @@
+{
+  "name": "ticketing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "commit": "git add . && git commit -m \"Quick commit of files\" && git push -u origin master"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/burnsy89/ticketing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/burnsy89/ticketing/issues"
+  },
+  "homepage": "https://github.com/burnsy89/ticketing#readme"
+}
