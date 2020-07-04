@@ -3,6 +3,7 @@ import 'express-async-errors';
 import { json } from 'body-parser';
 import mongoose from 'mongoose';
 import cookieSession from 'cookie-session';
+import { errorHandler, NotFoundError } from '@burnstickets/common';
 
 const app = express();
 app.set('trust proxy', true); //express is behind nginx proxy. Tell express it should trust traffic routed through proxy
