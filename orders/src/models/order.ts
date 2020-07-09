@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { OrderStatus } from '@sgtickets/common';
+import { OrderStatus } from '@burnstickets/common';
 import { TicketDoc } from './ticket';
 
 export { OrderStatus };

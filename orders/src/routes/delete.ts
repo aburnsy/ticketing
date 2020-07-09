@@ -3,7 +3,7 @@ import {
   requireAuth,
   NotFoundError,
   NotAuthorizedError,
-} from '@sgtickets/common';
+} from '@burnstickets/common';
 import { Order, OrderStatus } from '../models/order';
 
 const router = express.Router();
