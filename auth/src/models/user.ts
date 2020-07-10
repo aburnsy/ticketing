@@ -25,33 +25,31 @@ const userSchema = new mongoose.Schema(
   {
     email: {
       type: String,
-      required: true,
+      required: true
     },
     password: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
   {
     toJSON: {
       transform(doc, ret) {
+        ret.id = ret._id;
+        delete ret._id;
         delete ret.password;
         delete ret.__v;
-      },
-    },
+      }
+    }
   }
 );
 
-//Middleware implemented in Mongoose
-//With middleware functions, 'this' refers to the User object being stored
-//If we were to use an arrow function, 'this' would be overridden and would thed refer to the context of the entire file
-userSchema.pre('save', async function (done) {
+userSchema.pre('save', async function(done) {
   if (this.isModified('password')) {
-    //will return true if created for first time
     const hashed = await Password.toHash(this.get('password'));
     this.set('password', hashed);
   }
-  done(); //Callback to Mongoose
+  done();
 });
 
 userSchema.statics.build = (attrs: UserAttrs) => {

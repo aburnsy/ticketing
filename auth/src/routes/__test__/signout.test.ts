@@ -6,7 +6,7 @@ it('clears the cookie after signing out', async () => {
     .post('/api/users/signup')
     .send({
       email: 'test@test.com',
-      password: 'password',
+      password: 'password'
     })
     .expect(201);
 
@@ -17,6 +17,5 @@ it('clears the cookie after signing out', async () => {
 
   expect(response.get('Set-Cookie')[0]).toEqual(
     'express:sess=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; httponly'
-    //When the cookie is cleared, the sess var is wiped and expiry set to past date
   );
 });

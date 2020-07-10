@@ -7,14 +7,14 @@ spec:
   selector:
     matchLabels:
       app: client
-  template: #How should the app behave
+  template:
     metadata:
       labels:
-        app: client #the label we give to the container
+        app: client
     spec:
       containers:
         - name: client
-          image: bitmaq/client
+          image: stephengrider/client
 ---
 apiVersion: v1
 kind: Service
@@ -22,7 +22,7 @@ metadata:
   name: client-srv
 spec:
   selector:
-    app: client #what image is the service to communicate with?
+    app: client
   ports:
     - name: client
       protocol: TCP

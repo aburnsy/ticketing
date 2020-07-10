@@ -8,15 +8,15 @@ build:
   local:
     push: false
   artifacts:
-    - image: bitmaq/auth
-      context: auth #the folder to use
+    - image: stephengrider/auth
+      context: auth
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: bitmaq/client
+    - image: stephengrider/client
       context: client
       docker:
         dockerfile: Dockerfile
@@ -24,16 +24,16 @@ build:
         manual:
           - src: '**/*.js'
             dest: .
-    - image: bitmaq/tickets
-      context: tickets #the folder to use
+    - image: stephengrider/tickets
+      context: tickets
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: bitmaq/orders
-      context: orders #the folder to use
+    - image: stephengrider/orders
+      context: orders
       docker:
         dockerfile: Dockerfile
       sync:

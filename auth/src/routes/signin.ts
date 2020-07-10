@@ -37,7 +37,7 @@ router.post(
     // Generate JWT
     const userJwt = jwt.sign(
       {
-        id: existingUser.id, //existingUser is the const we created at the start of
+        id: existingUser.id,
         email: existingUser.email,
       },
       process.env.JWT_KEY!

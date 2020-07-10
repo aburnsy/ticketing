@@ -6,14 +6,13 @@ import { app } from '../app';
 declare global {
   namespace NodeJS {
     interface Global {
-      signin(): Promise<string[]>; //Tells TS there is a global signin property
+      signin(): Promise<string[]>;
     }
   }
 }
 
-let mongo: any; //Declare Mongo ahead of creating, so we can access mongo in later functions
+let mongo: any;
 beforeAll(async () => {
-  //Hook function which runs before everything else runs
   process.env.JWT_KEY = 'asdfasdf';
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
@@ -21,9 +20,8 @@ beforeAll(async () => {
   const mongoUri = await mongo.getUri();
 
   await mongoose.connect(mongoUri, {
-    //Connect to mongo
-    useNewUrlParser: true, //Configuration settings for Mongo
-    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true
   });
 });
 
@@ -31,12 +29,10 @@ beforeEach(async () => {
   const collections = await mongoose.connection.db.collections();
 
   for (let collection of collections) {
-    //Delete all collections before each test runs
     await collection.deleteMany({});
   }
 });
 
-//When all tests are complete, kill mongo
 afterAll(async () => {
   await mongo.stop();
   await mongoose.connection.close();
@@ -50,7 +46,7 @@ global.signin = async () => {
     .post('/api/users/signup')
     .send({
       email,
-      password,
+      password
     })
     .expect(201);
 

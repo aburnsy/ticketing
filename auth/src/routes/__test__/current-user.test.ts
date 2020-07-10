@@ -6,7 +6,7 @@ it('responds with details about the current user', async () => {
 
   const response = await request(app)
     .get('/api/users/currentuser')
-    .set('Cookie', cookie) //set the cookie header, Jest won't take care of this for us
+    .set('Cookie', cookie)
     .send()
     .expect(200);
 

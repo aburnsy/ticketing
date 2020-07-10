@@ -9,7 +9,7 @@ spec:
   rules:
     - host: ticketing.dev
       http:
-        paths: # The paths below are listed in order. Ensure the client catch all is listed at very bottom
+        paths:
           - path: /api/users/?(.*)
             backend:
               serviceName: auth-srv

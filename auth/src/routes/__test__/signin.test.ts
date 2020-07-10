@@ -6,7 +6,7 @@ it('fails when a email that does not exist is supplied', async () => {
     .post('/api/users/signin')
     .send({
       email: 'test@test.com',
-      password: 'password',
+      password: 'password'
     })
     .expect(400);
 });
@@ -16,7 +16,7 @@ it('fails when an incorrect password is supplied', async () => {
     .post('/api/users/signup')
     .send({
       email: 'test@test.com',
-      password: 'password',
+      password: 'password'
     })
     .expect(201);
 
@@ -24,7 +24,7 @@ it('fails when an incorrect password is supplied', async () => {
     .post('/api/users/signin')
     .send({
       email: 'test@test.com',
-      password: 'aslkdfjalskdfj',
+      password: 'aslkdfjalskdfj'
     })
     .expect(400);
 });
@@ -34,7 +34,7 @@ it('responds with a cookie when given valid credentials', async () => {
     .post('/api/users/signup')
     .send({
       email: 'test@test.com',
-      password: 'password',
+      password: 'password'
     })
     .expect(201);
 
@@ -42,27 +42,9 @@ it('responds with a cookie when given valid credentials', async () => {
     .post('/api/users/signin')
     .send({
       email: 'test@test.com',
-      password: 'password',
+      password: 'password'
     })
     .expect(200);
 
   expect(response.get('Set-Cookie')).toBeDefined();
-});
-
-it('fails when an incorrect password is supplied', async () => {
-  await request(app)
-    .post('/api/users/signup')
-    .send({
-      email: 'andyBurns@hcl.com',
-      password: 'abababa',
-    })
-    .expect(201);
-
-  await request(app)
-    .post('/api/users/signin')
-    .send({
-      email: 'andyBurns@hcl.com',
-      password: 'aa123423',
-    })
-    .expect(400);
 });

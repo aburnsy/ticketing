@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
-
 import { validateRequest, BadRequestError } from '@burnstickets/common';
+
 import { User } from '../models/user';
 
 const router = express.Router();
@@ -29,15 +29,16 @@ router.post(
     const user = User.build({ email, password });
     await user.save();
 
-    //Generate JWT
+    // Generate JWT
     const userJwt = jwt.sign(
       {
         id: user.id,
         email: user.email,
       },
-      process.env.JWT_KEY! //Secret Key - the exclamation tells TS to ignore that the variable may not have been defined yet
+      process.env.JWT_KEY!
     );
-    //Store it in session object
+
+    // Store it on session object
     req.session = {
       jwt: userJwt,
     };
